@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5" style="max-width: 500px;">
+  <div class="card p-4 shadow-sm">
+    <h3 class="mb-4 text-center">🌱 Enter Soil & Weather Details</h3>
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group mb-3">
+        <label>Nitrogen</label>
+        <input type="number" name="nitrogen" class="form-control" value="{{ input_values.nitrogen|default:'' }}" required>
+      </div>
+      <div class="form-group mb-3">
+        <label>Phosphorus</label>
+        <input type="number" name="phosphorus" class="form-control" value="{{ input_values.phosphorus|default:'' }}" required>
+      </div>
+      <div class="form-group mb-3">
+        <label>Potassium</label>
+        <input type="number" name="potassium" class="form-control" value="{{ input_values.potassium|default:'' }}" required>
+      </div>
+      <div class="form-group mb-3">
+        <label>Temperature (°C)</label>
+        <input type="number" step="any" name="temperature" class="form-control" value="{{ input_values.temperature|default:'' }}" required>
+      </div>
+      <div class="form-group mb-3">
+        <label>Humidity (%)</label>
+        <input type="number" step="any" name="humidity" class="form-control" value="{{ input_values.humidity|default:'' }}" required>
+      </div>
+      <div class="form-group mb-3">
+        <label>pH</label>
+        <input type="number" step="any" name="ph" class="form-control" value="{{ input_values.ph|default:'' }}" required>
+      </div>
+      <div class="form-group mb-4">
+        <label>Rainfall (mm)</label>
+        <input type="number" step="any" name="rainfall" class="form-control" value="{{ input_values.rainfall|default:'' }}" required>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Predict</button>
+    </form>
+  </div>
+</div>
+
+{% if crop %}
+<div class="container mt-5">
+  <h3 class="mb-4">🌾 Recommended Products for <strong>{{ crop }}</strong></h3>
+  <div class="row g-4">
+
+    <!-- 🌱 Crop Product Card -->
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'images/default_crop.jpg' %}" class="card-img-top" alt="Crop Image">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ crop }} Seeds</h5>
+          <p class="card-text">High-quality seeds recommended for growing <strong>{{ crop }}</strong>.</p>
+          <ul class="list-unstyled">
+            <li>🌱 Crop Type: {{ crop }}</li>
+            <li>📦 Pack Size: 1kg</li>
+            <li>💰 Price: ₹299</li>
+          </ul>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <span class="h6 text-success">Rating: 4.5</span>
+            <div>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-half text-warning"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between bg-light">
+          <button class="btn btn-success btn-sm">Add to Cart</button>
+          <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🧪 Fertilizer Product Card -->
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'images/fertilizer.jpg' %}" class="card-img-top" alt="Fertilizer">
+        <div class="card-body">
+          <h5 class="card-title">{{ fertilizer }} Fertilizer</h5>
+          <p class="card-text">Recommended fertilizer to improve <strong>{{ crop }}</strong> yield and soil health.</p>
+          <ul class="list-unstyled">
+            <li>🧪 N-P-K Ratio: 20-20-20</li>
+            <li>📦 Pack Size: 5kg</li>
+            <li>💰 Price: ₹499</li>
+          </ul>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <span class="h6 text-success">Rating: 4.3</span>
+            <div>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star text-warning"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between bg-light">
+          <button class="btn btn-success btn-sm">Add to Cart</button>
+          <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart"></i></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endif %}
+
+</body>
+</html>

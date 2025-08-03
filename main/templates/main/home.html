@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop & Fertilizer Recommendation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f8f3;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 30px;
+    }
+
+    .overview, .benefits {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li::before {
+      content: "✔️ ";
+    }
+
+    footer {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1>🌾 Crop & Fertilizer Recommendation System 🌱</h1>
+    <nav>
+  {% if user.is_authenticated %}
+    <a href="/predict">Predict</a>
+    <form method="post" action="/logout/" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" style="background:none;border:none;color:white;font-weight:bold;cursor:pointer;">Logout</button>
+    </form>
+  {% else %}
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+    <a href="/predict">Predict</a>
+  {% endif %}
+</nav>
+
+  </header>
+
+  <main>
+    <section class="overview">
+      <h2>Overview</h2>
+      <p>This system uses AI/ML to recommend the best crop and fertilizers based on soil, weather, and region data. It helps improve crop yield and reduce costs.</p>
+    </section>
+
+    <section class="benefits">
+      <h2>Benefits to Farmers</h2>
+      <ul>
+        <li>🌿 Accurate crop suggestions based on soil and climate</li>
+        <li>💰 Cost-effective fertilizer recommendations</li>
+        <li>📈 Improved crop productivity and income</li>
+        <li>🧠 Easy-to-use prediction system powered by machine learning</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Crop Recommendation System</p>
+  </footer>
+</body>
+</html>
