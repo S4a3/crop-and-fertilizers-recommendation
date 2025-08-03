@@ -13,7 +13,7 @@ The application includes user authentication (login/registeration),prediction fu
 ## Getting Started 
 
 ### 1. Clone the repository 
-    git clone 
+    git clone https://github.com/S4a3/crop-and-fertilizers-recommendation.git
 ### 2. Create a Virtual Environment
 
     python -m venv venv
@@ -54,9 +54,6 @@ The application includes user authentication (login/registeration),prediction fu
 │       └── ...
 
 
-## Screenshots
-
-_Add login, registration, and prediction feature screenshots here._
 
 ## Contributing
 
