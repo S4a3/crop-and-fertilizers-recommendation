@@ -17,7 +17,7 @@ The application includes user authentication (login/registeration),prediction fu
 ### 2. Create a Virtual Environment
 
     python -m venv venv
-    source venv/bin/activate # On Windows : venv\Scriots\activate
+    source venv/bin/activate # On Windows : venv\Scripts\activate
 
 ### 3. Install Dependencies
     pip install  -r requirements.txt
